@@ -17,13 +17,11 @@
 
 - has_many   :items
 - has_many   :orders
-- has_one    :address
 
 ## items テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| image            |            | null: false                    |
 | name             | string     | null: false                    |            
 | description      | text       | null: false                    |
 | price            | integer    | null: false                    |
@@ -61,11 +59,9 @@
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
 | order         | references | null: false, foreign_key: true |
 | prefecture_id | integer    | null: false                    |
 
 ### Association 
 
-- belongs_to :user
 - belongs_to :order
