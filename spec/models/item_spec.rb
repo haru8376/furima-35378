@@ -49,6 +49,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include 'Price is not a number'
       end
 
+      it 'priceが半角英数字混合では出品できない' do
+        @item.price = 'aa11'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price is not a number"
+      end
+
       it 'priceが¥300未満では出品できない' do
         @item.price = 299
         @item.valid?
@@ -89,6 +95,12 @@ RSpec.describe Item, type: :model do
         @item.shipping_date_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include 'Shipping date must be other than 0'
+      end
+
+      it 'imageが空では出品できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Image can't be blank"
       end
 
       it 'userが紐づいていないと出品できない' do
