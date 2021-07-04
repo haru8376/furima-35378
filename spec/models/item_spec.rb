@@ -22,7 +22,7 @@ RSpec.describe Item, type: :model do
       it 'nameは41文字以上なら出品できない' do
         @item.name = 'a' * 41
         @item.valid?
-        expect(@item.errors.full_messages).to include "Name is too long (maximum is 40 characters)"
+        expect(@item.errors.full_messages).to include 'Name is too long (maximum is 40 characters)'
       end
 
       it 'descriptionが空では出品できない' do
@@ -34,7 +34,7 @@ RSpec.describe Item, type: :model do
       it 'descriptionは1001文字以上なら出品できない' do
         @item.description = 'a' * 1001
         @item.valid?
-        expect(@item.errors.full_messages).to include "Description is too long (maximum is 1000 characters)"
+        expect(@item.errors.full_messages).to include 'Description is too long (maximum is 1000 characters)'
       end
 
       it 'priceが空では出品できない' do
@@ -46,55 +46,55 @@ RSpec.describe Item, type: :model do
       it 'priceが半角数字(全角)のみでないと出品できない' do
         @item.price = '３０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
 
       it 'priceが¥300未満では出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be greater than or equal to 300"
+        expect(@item.errors.full_messages).to include 'Price must be greater than or equal to 300'
       end
 
       it 'priceが¥10,000,000以上であれば出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be less than or equal to 9999999"
+        expect(@item.errors.full_messages).to include 'Price must be less than or equal to 9999999'
       end
 
       it 'category_idが空では出品できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include "Category must be other than 0"
+        expect(@item.errors.full_messages).to include 'Category must be other than 0'
       end
 
       it 'condintion_idが空では出品できない' do
         @item.condition_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include "Condition must be other than 0"
+        expect(@item.errors.full_messages).to include 'Condition must be other than 0'
       end
 
       it 'postage_idが空では出品できない' do
         @item.postage_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include "Postage must be other than 0"
+        expect(@item.errors.full_messages).to include 'Postage must be other than 0'
       end
 
       it 'prefecture_idが空では出品できない' do
         @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include "Prefecture must be other than 0"
+        expect(@item.errors.full_messages).to include 'Prefecture must be other than 0'
       end
 
       it 'shipping_date_idが空では出品できない' do
         @item.shipping_date_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include "Shipping date must be other than 0"
+        expect(@item.errors.full_messages).to include 'Shipping date must be other than 0'
       end
 
       it 'userが紐づいていないと出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "User must exist"
+        expect(@item.errors.full_messages).to include 'User must exist'
       end
     end
   end
