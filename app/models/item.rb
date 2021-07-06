@@ -12,12 +12,12 @@ class Item < ApplicationRecord
     validates  :name,              length: { maximum: 40 }
     validates  :description,       length: { maximum: 1000 }
     validates  :image
-  
+
     with_options format: { with: /\A[0-9]+\z/ },
                  numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 } do
       validates  :price
     end
-  
+
     with_options numericality: { other_than: 0 } do
       validates  :category_id
       validates  :condition_id
@@ -27,7 +27,3 @@ class Item < ApplicationRecord
     end
   end
 end
-
-
-
-  
